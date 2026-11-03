@@ -1,131 +1,419 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Little Universe of Us ♡</title>
-<style>
-:root{--pink:#f6b8ce;--rose:#bd557a;--cream:#fff8f5;--dark:#74344d}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
 
+<style>
+:root {
+    --pink: #f6b8ce;
+    --rose: #bd557a;
+    --cream: #fff8f5;
+    --dark: #74344d;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 html {
-    min-height: 100%;
-    background: transparent;
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     font-family: Georgia, 'Times New Roman', serif;
     color: var(--dark);
-    background: transparent;
+    background:
+        linear-gradient(rgba(255,240,248,.75),rgba(255,240,248,.75)),
+        url('background.jpe') center center / cover fixed;
     overflow-x: hidden;
-    position: relative;
 }
 
-body::before {
-    content: "";
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff8f5dd;
+    backdrop-filter: blur(12px);
+    padding: 14px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f7c9da;
+}
+
+nav a {
+    color: var(--dark);
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: .9rem;
+}
+
+nav a:hover {
+    color: var(--rose);
+}
+
+.brand {
+    font-weight: bold;
+    color: var(--rose);
+}
+
+section {
+    padding: 75px 7%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at 50% 40%, #fff9 0, transparent 55%);
+}
+
+.kicker {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: .75rem;
+    color: #a85a78;
+}
+
+h1 {
+    font-size: clamp(2.5rem,8vw,5.8rem);
+    font-weight: normal;
+    font-style: italic;
+    line-height: 1.05;
+    margin: 18px 0;
+    color: #a8446b;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+    font-size: clamp(2rem,5vw,3rem);
+    color: #a8446b;
+    margin-bottom: 10px;
+}
+
+.sub {
+    text-align: center;
+    margin: 0 auto 38px;
+    max-width: 650px;
+    line-height: 1.7;
+}
+
+button, .btn {
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 25px;
+    background: #c65e86;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 8px 20px #c65e8630;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    background: #a8446b;
+}
+
+.heart {
+    font-size: 2rem;
+    color: #d86d98;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.panel {
+    background: #fff9f7d9;
+    border: 1px solid #f7cada;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 12px 30px #b65d7b12;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.timeline {
+    max-width: 700px;
+    margin: auto;
+    border-left: 2px solid #e7a8c2;
+    padding-left: 25px;
+}
+
+.event {
+    position: relative;
+    margin: 25px 0;
+    padding: 20px;
+    background: #fff9f7;
+    border-radius: 18px;
+}
+
+.event:before {
+    content: "♡";
+    position: absolute;
+    left: -39px;
+    color: #c65e86;
+    font-size: 1.5rem;
+}
+
+.date {
+    font-size: .8rem;
+    color: #b45b7c;
+    letter-spacing: 1px;
+}
+
+.note {
+    min-height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.note:hover {
+    transform: rotate(-1deg);
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.polaroid {
+    background: white;
+    padding: 12px 12px 25px;
+    box-shadow: 0 8px 25px #9d42651c;
+    transform: rotate(var(--r));
+}
+
+.polaroid img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    background: #f8dce7;
+}
+
+.polaroid p {
+    text-align: center;
+    margin: 14px 0 0;
+    font-style: italic;
+}
+
+.letter {
+    max-width: 750px;
+    margin: auto;
+    line-height: 2;
+    font-size: 1.08rem;
+    white-space: pre-line;
+}
+
+.counter {
+    font-size: 3.3rem;
+    color: #b94f78;
+    margin: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 70px 20px;
+    background: #f8c9dc;
+    color: #8b3d5c;
+}
+
+footer h2 {
+    color: #8b3d5c;
+}
+
+.small {
+    font-size: .85rem;
+    opacity: .8;
+}
+
+#envelope {
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-
-    background-image:
-        linear-gradient(
-            rgba(255, 240, 248, 0.25),
-            rgba(255, 240, 248, 0.25)
-        ),
-        url('./background.jpe');
-
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-
-nav{position:sticky;top:0;z-index:5;background:#fff8f5dd;backdrop-filter:blur(12px);padding:14px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f7c9da}
-nav a{color:var(--dark);text-decoration:none;margin:0 8px;font-size:.9rem}nav a:hover{color:var(--rose)}
-.brand{font-weight:bold;color:var(--rose)}
-section{padding:75px 7%;max-width:1100px;margin:auto}
-.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,#fff9 0,transparent 55%)}
-.kicker{letter-spacing:3px;text-transform:uppercase;font-size:.75rem;color:#a85a78}
-h1{font-size:clamp(2.5rem,8vw,5.8rem);font-weight:normal;font-style:italic;line-height:1.05;margin:18px 0;color:#a8446b}
-h2{text-align:center;font-weight:normal;font-style:italic;font-size:clamp(2rem,5vw,3rem);color:#a8446b;margin-bottom:10px}
-.sub{text-align:center;margin:0 auto 38px;max-width:650px;line-height:1.7}
-button,.btn{border:0;border-radius:999px;padding:14px 25px;background:#c65e86;color:white;cursor:pointer;font-size:1rem;box-shadow:0 8px 20px #c65e8630;text-decoration:none;display:inline-block}
-button:hover,.btn:hover{transform:translateY(-2px);background:#a8446b}
-.heart{font-size:2rem;color:#d86d98;animation:pulse 1.8s infinite}
-@keyframes pulse{50%{transform:scale(1.2)}}
-.panel{background:#fff9f7d9;border:1px solid #f7cada;border-radius:24px;padding:25px;box-shadow:0 12px 30px #b65d7b12}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.timeline{max-width:700px;margin:auto;border-left:2px solid #e7a8c2;padding-left:25px}
-.event{position:relative;margin:25px 0;padding:20px;background:#fff9f7;border-radius:18px}
-.event:before{content:"♡";position:absolute;left:-39px;color:#c65e86;font-size:1.5rem}
-.date{font-size:.8rem;color:#b45b7c;letter-spacing:1px}
-.note{min-height:145px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.15rem;line-height:1.6;cursor:pointer;transition:.2s}
-.note:hover{transform:rotate(-1deg)}
-.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
-.polaroid{background:white;padding:12px 12px 25px;box-shadow:0 8px 25px #9d42651c;transform:rotate(var(--r));}
-.polaroid img{width:100%;height:210px;object-fit:cover;background:#f8dce7}
-.polaroid p{text-align:center;margin:14px 0 0;font-style:italic}
-.letter{max-width:750px;margin:auto;line-height:2;font-size:1.08rem;white-space:pre-line}
-.counter{font-size:3.3rem;color:#b94f78;margin:10px}
-footer{text-align:center;padding:70px 20px;background:#f8c9dc;color:#8b3d5c}
-footer h2{color:#8b3d5c}
-.small{font-size:.85rem;opacity:.8}
-#envelope{
-    position:fixed;
-    inset:0;
-    z-index:10;
+    z-index: 10;
     background:
         linear-gradient(rgba(255,240,248,.55),rgba(255,240,248,.55)),
         url('background.jpe') center center / cover no-repeat;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:25px;
-    transition:opacity .7s;
-}#envelope.hide{opacity:0;pointer-events:none}
-.env-card{
-    max-width:480px;
-    background:rgba(255,249,248,0.35);
-    padding:40px 28px;
-    border-radius:25px;
-    box-shadow:0 20px 70px #9d42652b
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+    transition: opacity .7s;
 }
-.spark{position:fixed;pointer-events:none;z-index:2;animation:fall 5s linear forwards}
-@keyframes fall{from{transform:translateY(-10vh);opacity:1}to{transform:translateY(105vh);opacity:0}}
-@media(max-width:600px){nav{flex-wrap:wrap;gap:8px}nav div:last-child{width:100%;text-align:center}nav a{margin:0 5px;font-size:.8rem}section{padding:60px 6%}.hero{min-height:82vh}}
+
+#envelope.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.env-card {
+    max-width: 480px;
+    background: rgba(255,249,248,0.35);
+    padding: 40px 28px;
+    border-radius: 25px;
+    box-shadow: 0 20px 70px #9d42652b;
+}
+
+.spark {
+    position: fixed;
+    pointer-events: none;
+    z-index: 2;
+    animation: fall 5s linear forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-10vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(105vh);
+        opacity: 0;
+    }
+}
+
+@media(max-width:600px) {
+    nav {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    nav div:last-child {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 0 5px;
+        font-size: .8rem;
+    }
+
+    section {
+        padding: 60px 6%;
+    }
+
+    .hero {
+        min-height: 82vh;
+    }
+}
 </style>
 </head>
-  <script>
+
+<script>
 if (window.location.search.includes("utm_source")) {
-  const url = new URL(window.location.href);
-  url.searchParams.delete("utm_source");
-  window.history.replaceState({}, "", url);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("utm_source");
+    window.history.replaceState({}, "", url);
 }
 </script>
-<body>
-<div id="envelope"><div class="env-card"><div class="heart">♡</div><p class="kicker">a little universe of us</p><h1 style="font-size:3rem">for my favorite person</h1><p>a little story about you, me, and everything in between…</p><button onclick="openSite()">open my heart ♡</button><p class="small">psst... this is all about us.</p></div></div>
-<nav><div class="brand">♡ our little universe</div><div><a href="#story">Story</a><a href="#reasons">Reasons</a><a href="#memories">Memories</a><a href="#letter">Letter</a><a href="#forever">Forever</a></div></nav>
-<section class="hero" id="home"><p class="kicker">made with all my love</p><h1>you + me =<br>my favorite story ♡</h1><p class="sub">a little place on the internet, made just for us.<br>every memory, every laugh, every version of you—i love it all.</p><a class="btn" href="#story">let's relive us ↓</a><div class="heart" style="margin-top:30px">♡</div></section>
-<section id="story"><h2>our love story ♡</h2><p class="sub">from the first hello to every little forever after.</p><div class="timeline">
-<div class="event"><div class="date">21 July 2026</div><h3>the day you came into my room</h3><p>I may not remember the exact day we first crossed paths in SQ, but I still remember when you came into my room on July 21, 2026. Little did I know, that simple moment would become the beginning of something special.</p></div>
-<div class="event"><div class="date">05 Agustus 2026</div><h3>the day you became mine</h3><p>My favorite yes, my favorite beginning. The day we became more than just two people who knew each other, but two hearts choosing to stay together. ❤️</p></div>
-<div class="event"><div class="date">05 Agustus 2026</div><h3>the first time you called me sayang</h3><p>I still remember the first time you called me "sayang". It was such a simple word, but somehow, it made my heart skip a beat. I never knew one little word from you could make me feel that shy and happy at the same time.</p></div>
-<div class="event"><div class="date">TODAY ♡</div><h3>still choosing you</h3><p>Even after all the days we've shared, my heart still chooses you. Through every laugh, every little argument, and every moment in between, I'm grateful to have you by my side. I don't know what the future holds, but I hope it will always have us in it. And if I had to choose all over again, I would still choose you, over and over again.</p></div></div></section>
-<section id="reasons"><h2>reasons why i love you ♡</h2><p class="sub">there are a million reasons why I love you, but these are just a few things that make you so special to me.</p><div class="grid">
-<div class="panel note" onclick="this.innerHTML='because your smile makes my whole day softer ♡'">♡ your smile</div>
-<div class="panel note" onclick="this.innerHTML='you make even silence feel comfortable ♡'">♡ your presence</div>
-<div class="panel note" onclick="this.innerHTML='you make me feel loved in the little things ♡'">♡ the way you care</div>
-<div class="panel note" onclick="this.innerHTML='i get to love every version of you ♡'">♡ all of you</div>
-<div class="panel note" onclick="this.innerHTML='you are my favorite person to tell everything to ♡'">♡ our conversations</div>
-<div class="panel note" onclick="this.innerHTML='because being with you feels like home ♡'">♡ my safe place</div></div></section>
 
+<body>
+
+<div id="envelope">
+    <div class="env-card">
+        <div class="heart">♡</div>
+        <p class="kicker">a little universe of us</p>
+        <h1 style="font-size:3rem">for my favorite person</h1>
+        <p>a little story about you, me, and everything in between…</p>
+        <button onclick="openSite()">open my heart ♡</button>
+        <p class="small">psst... this is all about us.</p>
+    </div>
+</div>
+
+<nav>
+    <div class="brand">♡ our little universe</div>
+    <div>
+        <a href="#story">Story</a>
+        <a href="#reasons">Reasons</a>
+        <a href="#memories">Memories</a>
+        <a href="#letter">Letter</a>
+        <a href="#forever">Forever</a>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <p class="kicker">made with all my love</p>
+    <h1>you + me =<br>my favorite story ♡</h1>
+    <p class="sub">
+        a little place on the internet, made just for us.<br>
+        every memory, every laugh, every version of you—i love it all.
+    </p>
+    <a class="btn" href="#story">let's relive us ↓</a>
+    <div class="heart" style="margin-top:30px">♡</div>
+</section>
+
+<section id="story">
+    <h2>our love story ♡</h2>
+    <p class="sub">from the first hello to every little forever after.</p>
+
+    <div class="timeline">
+        <div class="event">
+            <div class="date">21 July 2026</div>
+            <h3>the day you came into my room</h3>
+            <p>I may not remember the exact day we first crossed paths in SQ, but I still remember when you came into my room on July 21, 2026. Little did I know, that simple moment would become the beginning of something special.</p>
+        </div>
+
+        <div class="event">
+            <div class="date">05 Agustus 2026</div>
+            <h3>the day you became mine</h3>
+            <p>My favorite yes, my favorite beginning. The day we became more than just two people who knew each other, but two hearts choosing to stay together. ❤️</p>
+        </div>
+
+        <div class="event">
+            <div class="date">05 Agustus 2026</div>
+            <h3>the first time you called me sayang</h3>
+            <p>I still remember the first time you called me "sayang". It was such a simple word, but somehow, it made my heart skip a beat. I never knew one little word from you could make me feel that shy and happy at the same time.</p>
+        </div>
+
+        <div class="event">
+            <div class="date">TODAY ♡</div>
+            <h3>still choosing you</h3>
+            <p>Even after all the days we've shared, my heart still chooses you. Through every laugh, every little argument, and every moment in between, I'm grateful to have you by my side. I don't know what the future holds, but I hope it will always have us in it. And if I had to choose all over again, I would still choose you, over and over again.</p>
+        </div>
+    </div>
+</section>
+
+<section id="reasons">
+    <h2>reasons why i love you ♡</h2>
+    <p class="sub">there are a million reasons why I love you, but these are just a few things that make you so special to me.</p>
+
+    <div class="grid">
+        <div class="panel note" onclick="this.innerHTML='because your smile makes my whole day softer ♡'">♡ your smile</div>
+        <div class="panel note" onclick="this.innerHTML='you make even silence feel comfortable ♡'">♡ your presence</div>
+        <div class="panel note" onclick="this.innerHTML='you make me feel loved in the little things ♡'">♡ the way you care</div>
+        <div class="panel note" onclick="this.innerHTML='i get to love every version of you ♡'">♡ all of you</div>
+        <div class="panel note" onclick="this.innerHTML='you are my favorite person to tell everything to ♡'">♡ our conversations</div>
+        <div class="panel note" onclick="this.innerHTML='because being with you feels like home ♡'">♡ my safe place</div>
+    </div>
+</section>
 
 <section id="memories">
     <h2>our memories ♡</h2>
@@ -134,29 +422,28 @@ if (window.location.search.includes("utm_source")) {
     <div class="photos">
         <div class="polaroid" style="--r:-2deg">
             <img src="1.jpe"
-                 onerror="this.src='https://placehold.co/600x600/f8dce7/9d4265?text=our+photo">
+                 onerror="this.src='https://placehold.co/600x600/f8dce7/9d4265?text=our+photo'">
             <p>my favorite person</p>
         </div>
 
         <div class="polaroid" style="--r:2deg">
             <img src="2.jpe"
-                 onerror="this.src='https://placehold.co/600x600/f8dce7/9d4265?text=memory+two">
+                 onerror="this.src='https://placehold.co/600x600/f8dce7/9d4265?text=memory+two'">
             <p>the prettiest memory</p>
         </div>
 
         <div class="polaroid" style="--r:-1deg">
             <img src="3.jpe"
-                 onerror="this.src='https://placehold.co/600x600/f8dce7/9d4265?text=memory+three">
+                 onerror="this.src='https://placehold.co/600x600/f8dce7/9d4265?text=memory+three'">
             <p>just us, always</p>
         </div>
     </div>
 </section>
 
-
-
 <section id="letter">
     <h2>a letter for you ♡</h2>
     <p class="sub">a little letter, written with all my love, just for you.</p>
+
     <div class="panel letter">my love,
 happy monthsary, sayang. ♡
 
@@ -169,7 +456,9 @@ if i could start this story all over again, i'd still want it to be with you.
 i love you, today, tomorrow, and in every little lifetime. ♡
 
 always yours,
-Jared</div></section>
+Jared</div>
+</section>
+
 <section id="forever">
     <h2>forever countdown ♡</h2>
     <p class="sub">every day with you is another reason to be grateful.</p>
@@ -190,13 +479,40 @@ Jared</div></section>
     <h3>i love you. always. ♡</h3>
     <p class="small">made with love, just for you</p>
 </footer>
+
 <script>
-function openSite(){document.getElementById('envelope').classList.add('hide');setTimeout(()=>document.getElementById('envelope').remove(),800);hearts();}
-function hearts(){setInterval(()=>{let h=document.createElement('div');h.className='spark';h.textContent=['♡','♥','✦'][Math.floor(Math.random()*3)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(14+Math.random()*20)+'px';h.style.color='#d56b98';document.body.appendChild(h);setTimeout(()=>h.remove(),5000)},650)}
+function openSite() {
+    document.getElementById('envelope').classList.add('hide');
+
+    setTimeout(() => {
+        document.getElementById('envelope').remove();
+    }, 800);
+
+    hearts();
+}
+
+function hearts() {
+    setInterval(() => {
+        let h = document.createElement('div');
+        h.className = 'spark';
+        h.textContent = ['♡', '♥', '✦'][Math.floor(Math.random() * 3)];
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.fontSize = (14 + Math.random() * 20) + 'px';
+        h.style.color = '#d56b98';
+
+        document.body.appendChild(h);
+
+        setTimeout(() => h.remove(), 5000);
+    }, 650);
+}
+
 // EDIT: format YYYY-MM-DD (tanggal jadian kalian)
 const anniversaryDate = '2026-08-05';
-const start = new Date(anniversaryDate+'T00:00:00');
-const days = Math.max(0,Math.floor((new Date()-start)/86400000));
-document.getElementById('days').textContent=days.toLocaleString('id-ID');
+const start = new Date(anniversaryDate + 'T00:00:00');
+const days = Math.max(0, Math.floor((new Date() - start) / 86400000));
+
+document.getElementById('days').textContent = days.toLocaleString('id-ID');
 </script>
-</body></html>
+
+</body>
+</html>
