@@ -7,15 +7,30 @@
 <style>
 :root{--pink:#f6b8ce;--rose:#bd557a;--cream:#fff8f5;--dark:#74344d}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{
-    margin:0;
-    font-family:Georgia,'Times New Roman',serif;
-    color:var(--dark);
-    background:
-        linear-gradient(rgba(255,240,248,.75),rgba(255,240,248,.75)),
-        url('background.jpe') center center / cover fixed;
-    overflow-x:hidden;
+
+body {
+    background: transparent;
+    position: relative;
+    isolation: isolate;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -8px;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            rgba(255, 240, 248, 0.45),
+            rgba(255, 240, 248, 0.45)
+        ),
+        url('background.jpe') center center / cover no-repeat;
+
+    filter: blur(5px);
+}
+
 nav{position:sticky;top:0;z-index:5;background:#fff8f5dd;backdrop-filter:blur(12px);padding:14px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f7c9da}
 nav a{color:var(--dark);text-decoration:none;margin:0 8px;font-size:.9rem}nav a:hover{color:var(--rose)}
 .brand{font-weight:bold;color:var(--rose)}
