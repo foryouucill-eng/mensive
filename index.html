@@ -46,6 +46,13 @@ footer h2{color:#8b3d5c}
 @media(max-width:600px){nav{flex-wrap:wrap;gap:8px}nav div:last-child{width:100%;text-align:center}nav a{margin:0 5px;font-size:.8rem}section{padding:60px 6%}.hero{min-height:82vh}}
 </style>
 </head>
+  <script>
+if (window.location.search.includes("utm_source")) {
+  const url = new URL(window.location.href);
+  url.searchParams.delete("utm_source");
+  window.history.replaceState({}, "", url);
+}
+</script>
 <body>
 <div id="envelope"><div class="env-card"><div class="heart">♡</div><p class="kicker">a little universe of us</p><h1 style="font-size:3rem">for my favorite person</h1><p>a little story about you, me, and everything in between…</p><button onclick="openSite()">open my heart ♡</button><p class="small">psst... this is all about us.</p></div></div>
 <nav><div class="brand">♡ our little universe</div><div><a href="#story">Story</a><a href="#reasons">Reasons</a><a href="#memories">Memories</a><a href="#letter">Letter</a><a href="#forever">Forever</a></div></nav>
