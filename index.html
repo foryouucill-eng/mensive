@@ -15,20 +15,33 @@ body {
     color: var(--dark);
     
 
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--dark);
 
-background:
-    linear-gradient(rgba(255,240,248,.75),rgba(255,240,248,.75)),
-    url('background.jpe') center center / cover no-repeat fixed;
+    background-color: #fff0f8;
+    background-image:
+        linear-gradient(
+            rgba(255, 240, 248, 0.75),
+            rgba(255, 240, 248, 0.75)
+        ),
+        url('background.jpe');
 
-background-attachment: fixed;
-
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
     overflow-x: hidden;
 }
 
 @media (max-width: 600px) {
     body {
-        background-size: 100% auto;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 }
 
