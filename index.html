@@ -60,7 +60,13 @@ footer h2{color:#8b3d5c}
     padding:25px;
     transition:opacity .7s;
 }#envelope.hide{opacity:0;pointer-events:none}
-.env-card{max-width:480px;background:#fff9f8;padding:40px 28px;border-radius:25px;box-shadow:0 20px 70px #9d42652b}
+.env-card{
+    background: rgba(255, 255, 255, 0.35) !important;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.45);
+    box-shadow: 0 20px 70px rgba(157,66,101,0.15);
+}
 .spark{position:fixed;pointer-events:none;z-index:2;animation:fall 5s linear forwards}
 @keyframes fall{from{transform:translateY(-10vh);opacity:1}to{transform:translateY(105vh);opacity:0}}
 @media(max-width:600px){nav{flex-wrap:wrap;gap:8px}nav div:last-child{width:100%;text-align:center}nav a{margin:0 5px;font-size:.8rem}section{padding:60px 6%}.hero{min-height:82vh}}
