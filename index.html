@@ -7,16 +7,28 @@
 <style>
 :root{--pink:#f6b8ce;--rose:#bd557a;--cream:#fff8f5;--dark:#74344d}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
+
 body {
     margin: 0;
     font-family: Georgia, 'Times New Roman', serif;
     color: var(--dark);
-    background:
-        linear-gradient(rgba(255,240,248,.75), rgba(255,240,248,.75)),
-        url('background.jpe') center center / 90% auto no-repeat;
+    background-color: #fff0f8;
+    background-image:
+        linear-gradient(rgba(255,240,248,.55), rgba(255,240,248,.55)),
+        url('background.jpe');
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: repeat-y;
     background-attachment: scroll;
     overflow-x: hidden;
 }
+
+@media (max-width: 600px) {
+    body {
+        background-size: 100% auto;
+    }
+}
+
 nav{position:sticky;top:0;z-index:5;background:#fff8f5dd;backdrop-filter:blur(12px);padding:14px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f7c9da}
 nav a{color:var(--dark);text-decoration:none;margin:0 8px;font-size:.9rem}nav a:hover{color:var(--rose)}
 .brand{font-weight:bold;color:var(--rose)}
