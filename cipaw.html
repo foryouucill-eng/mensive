@@ -1,0 +1,543 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Love Story ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff3f8, #f8d8e8, #f4c4dc);
+    font-family: 'DM Sans', sans-serif;
+    color: #874562;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 12px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 7vw, 55px);
+    font-style: italic;
+    color: #c44f89;
+    margin: 0;
+}
+
+.header p {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    margin: 5px 0 25px;
+}
+
+.book-container {
+    perspective: 1800px;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.book {
+    position: relative;
+    width: min(760px, 95vw);
+    height: 480px;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 20px 25px #b65a8830);
+}
+
+/* COVER */
+.cover {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f6b9d5, #df7fb1, #c75d96);
+    border: 8px double #ffe7f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.cover h2 {
+    font: italic 700 clamp(32px, 6vw, 52px) 'Playfair Display', serif;
+    margin: 18px 0 8px;
+}
+
+.cover .names {
+    font: 28px 'Caveat', cursive;
+}
+
+.cover .date {
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-top: 35px;
+}
+
+.cover .orn {
+    font-size: 38px;
+    letter-spacing: 12px;
+}
+
+/* SPREAD HALAMAN */
+.spread {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    transition: opacity .4s;
+}
+
+.spread.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: #fffaf5;
+    border: 1px solid #efd3df;
+    padding: 30px 25px;
+    overflow: hidden;
+    box-shadow: inset 0 0 18px #e6bfd21a;
+}
+
+.page.left {
+    border-radius: 16px 3px 3px 16px;
+}
+
+.page.right {
+    border-radius: 3px 16px 16px 3px;
+}
+
+.page h3 {
+    font: italic 600 23px 'Playfair Display', serif;
+    color: #c15b8d;
+    margin: 0 0 12px;
+}
+
+.page p {
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 9px 0;
+}
+
+.hand {
+    font: 22px 'Caveat', cursive;
+    color: #a94c7c;
+}
+
+.photo {
+    width: 100%;
+    height: 190px;
+    border: 7px solid white;
+    box-shadow: 0 5px 15px #c8799d30;
+    background: #f8dce9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transform: rotate(-2deg);
+    margin: 15px 0;
+    color: #bd6993;
+    font-size: 12px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.caption {
+    font: 19px 'Caveat', cursive;
+    text-align: center;
+}
+
+.quote {
+    background: #fff0f7;
+    border: 1px dashed #e9a8c8;
+    padding: 12px;
+    border-radius: 12px;
+    font: 20px 'Caveat', cursive;
+    text-align: center;
+    margin: 15px 0;
+}
+
+/* NAVIGASI */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+button {
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 22px;
+    background: #d95f9b;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button.secondary {
+    background: #fff3f9;
+    color: #ad4b7d;
+    border: 1px solid #efbdd7;
+}
+
+button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+#pageCount {
+    font-size: 12px;
+    min-width: 100px;
+}
+
+.tip {
+    font: 18px 'Caveat', cursive;
+    margin-top: 13px;
+}
+
+@media(max-width:600px) {
+    .book {
+        height: 420px;
+    }
+
+    .page {
+        padding: 20px 15px;
+    }
+
+    .page h3 {
+        font-size: 18px;
+    }
+
+    .page p {
+        font-size: 11px;
+        line-height: 1.65;
+    }
+
+    .photo {
+        height: 135px;
+    }
+
+    .cover h2 {
+        font-size: 34px;
+    }
+
+    .cover .names {
+        font-size: 23px;
+    }
+
+    .quote {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<header class="header">
+    <h1>Our Little Love Story ♡</h1>
+    <p>a book made of you, me, and our memories</p>
+</header>
+
+<div class="book-container">
+<div class="book">
+
+<!-- COVER -->
+<section class="spread" data-spread="0">
+<div class="cover">
+    <div class="orn">♡ ✿ ♡</div>
+    <h2>Our Little<br>Love Story</h2>
+    <div class="names">Nama Kamu & Nama Dia</div>
+    <div class="date">HAPPY MONTHSARY · 2026</div>
+    <p style="font:18px 'Caveat';margin-top:28px">
+        open this little book, my love ♡
+    </p>
+</div>
+</section>
+
+<!-- PAGE 1 -->
+<section class="spread hidden" data-spread="1">
+
+<div class="page left">
+    <h3>♡ once upon a time</h3>
+
+    <p>
+        di antara banyak hal yang tidak pernah direncanakan,
+        kita justru menemukan satu cerita yang begitu berarti.
+    </p>
+
+    <p>
+        cerita tentang dua orang yang perlahan saling mengenal,
+        berbagi tawa, bertukar cerita, dan akhirnya menjadi
+        bagian penting dari hari-hari satu sama lain.
+    </p>
+
+    <div class="quote">
+        somehow, meeting you became my favorite coincidence.
+    </div>
+
+    <p class="hand">
+        dan sejak itu, kisah kita dimulai...
+    </p>
+</div>
+
+<div class="page right">
+    <h3>our beginning ✿</h3>
+
+    <div class="photo">
+        <img src="foto1.jpg" alt="Foto awal hubungan">
+    </div>
+
+    <p class="caption">
+        the beginning of something beautiful
+    </p>
+
+    <p style="text-align:center">
+        setiap cerita punya awal, dan aku senang cerita ini dimulai dengan kamu.
+    </p>
+</div>
+
+</section>
+
+<!-- PAGE 2 -->
+<section class="spread hidden" data-spread="2">
+
+<div class="page left">
+    <h3>things i love about you</h3>
+
+    <p>
+        aku suka caramu membuat hal sederhana terasa istimewa.
+    </p>
+
+    <p>
+        aku suka tawamu, ceritamu, perhatian kecilmu,
+        dan caramu hadir bahkan lewat hal-hal sederhana.
+    </p>
+
+    <p>
+        aku suka bahwa bersamamu, aku bisa menjadi diriku sendiri
+        tanpa harus berpura-pura menjadi siapa-siapa.
+    </p>
+
+    <div class="quote">
+        you make ordinary days feel lovely.
+    </div>
+</div>
+
+<div class="page right">
+    <h3>my favorite person ♡</h3>
+
+    <div class="photo">
+        <img src="foto2.jpg" alt="Foto pasangan">
+    </div>
+
+    <p class="caption">
+        my favorite smile, my favorite soul
+    </p>
+
+    <p>
+        terima kasih sudah menjadi seseorang yang selalu ingin
+        aku kenal lebih jauh, hari demi hari.
+    </p>
+</div>
+
+</section>
+
+<!-- PAGE 3 -->
+<section class="spread hidden" data-spread="3">
+
+<div class="page left">
+    <h3>little memories</h3>
+
+    <p>
+        hal-hal kecil yang mungkin terlihat biasa,
+        tetapi selalu punya tempat spesial di hati.
+    </p>
+
+    <ul style="font-size:12px;line-height:2;padding-left:18px">
+        <li>percakapan yang tidak terasa membosankan</li>
+        <li>tawa karena hal-hal random</li>
+        <li>ucapan selamat pagi dan malam</li>
+        <li>momen saling menguatkan</li>
+        <li>semua kenangan yang hanya kita pahami</li>
+    </ul>
+
+    <div class="quote">
+        the little things are actually the big things.
+    </div>
+</div>
+
+<div class="page right">
+    <h3>our memories ✧</h3>
+
+    <div class="photo">
+        <img src="foto3.jpg" alt="Kenangan pertama">
+    </div>
+
+    <div class="photo" style="height:105px;transform:rotate(-1deg)">
+        <img src="foto4.jpg" alt="Kenangan lainnya">
+    </div>
+
+    <p class="caption">
+        a thousand tiny moments, one lovely story
+    </p>
+</div>
+
+</section>
+
+<!-- PAGE 4 -->
+<section class="spread hidden" data-spread="4">
+
+<div class="page left">
+    <h3>a letter for you</h3>
+
+    <p>happy monthsary, my favorite person. ♡</p>
+
+    <p>
+        terima kasih sudah hadir dan menjadi bagian dari hidupku.
+        terima kasih untuk setiap waktu, perhatian, kesabaran,
+        dan hal kecil yang mungkin tidak selalu sempat aku ucapkan.
+    </p>
+
+    <p>
+        aku tidak berharap kita selalu sempurna.
+        aku hanya berharap kita terus belajar memahami,
+        saling mendengarkan, dan memilih untuk bertumbuh bersama.
+    </p>
+
+    <p class="hand">
+        i'm so glad it's you.
+    </p>
+</div>
+
+<div class="page right">
+    <h3>to my love, always ♡</h3>
+
+    <p>
+        semoga kita punya lebih banyak cerita untuk dikenang,
+        lebih banyak alasan untuk tertawa,
+        dan lebih banyak hari untuk saling menyayangi.
+    </p>
+
+    <p>
+        kalau suatu saat hari terasa berat,
+        semoga kita tetap ingat bahwa kita berada di sisi yang sama.
+    </p>
+
+    <div class="quote">
+        in every version of tomorrow, i hope there's us.
+    </div>
+
+    <p class="hand" style="text-align:right">
+        with all my love,<br>
+        your favorite person ♡
+    </p>
+</div>
+
+</section>
+
+<!-- LAST PAGE -->
+<section class="spread hidden" data-spread="5">
+<div class="cover">
+    <div class="orn">♡ ✧ ♡</div>
+    <h2>To be<br>continued...</h2>
+
+    <div class="names">
+        our story isn't finished yet
+    </div>
+
+    <p style="font:22px 'Caveat';margin-top:30px">
+        more memories, more love, more us. ♡
+    </p>
+
+    <div class="date">HAPPY MONTHSARY</div>
+</div>
+</section>
+
+</div>
+</div>
+
+<!-- BUTTON -->
+<div class="controls">
+    <button class="secondary" id="prev">← Previous</button>
+    <span id="pageCount">Cover · 1 / 6</span>
+    <button id="next">Next →</button>
+</div>
+
+<div class="tip">
+    turn the pages, keep the memories ♡
+</div>
+
+</div>
+
+<script>
+const spreads = [...document.querySelectorAll(".spread")];
+
+let index = 0;
+
+const labels = [
+    "Cover",
+    "Our Beginning",
+    "Things I Love",
+    "Little Memories",
+    "A Letter",
+    "The End"
+];
+
+function show(n) {
+    index = Math.max(0, Math.min(spreads.length - 1, n));
+
+    spreads.forEach((spread, i) => {
+        spread.classList.toggle("hidden", i !== index);
+    });
+
+    document.getElementById("prev").disabled = index === 0;
+    document.getElementById("next").disabled = index === spreads.length - 1;
+
+    document.getElementById("pageCount").textContent =
+        labels[index] + " · " + (index + 1) + " / " + spreads.length;
+}
+
+document.getElementById("prev").addEventListener("click", () => {
+    show(index - 1);
+});
+
+document.getElementById("next").addEventListener("click", () => {
+    show(index + 1);
+});
+
+show(0);
+</script>
+
+</body>
+</html>
